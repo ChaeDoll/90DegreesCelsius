@@ -1,8 +1,8 @@
 ---
 name: 90 Degree Dev Issue Template
 about: Github Issue Template for XREAL 7기 Dev
-title: ''
-labels: ''
+title: "[Issue #0]"
+labels: "\U0001F914uncategorized"
 assignees: JIN-U-N
 
 ---
@@ -17,4 +17,4 @@ assignees: JIN-U-N
 - [ ] todo2
 
 ### ETC
-(기타 사항. 생략 가능)
+(참조 자료 등 기타 사항. 생략 가능)
