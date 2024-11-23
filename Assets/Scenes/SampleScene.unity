@@ -10442,7 +10442,7 @@ GameObject:
   - component: {fileID: 1044997413}
   - component: {fileID: 1044997417}
   m_Layer: 0
-  m_Name: Example Cube
+  m_Name: Grabbable Example Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
