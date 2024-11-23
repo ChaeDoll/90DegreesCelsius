@@ -2,8 +2,8 @@
 name: 90 Degree Dev Issue Template
 about: Github Issue Template for XREAL 7기 Dev
 title: "[ISSUE] new issue title"
-labels: "\U0001F914uncategorized"
-assignees: JIN-U-N
+labels: ''
+assignees: ''
 
 ---
 
