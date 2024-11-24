@@ -6,22 +6,58 @@ using UnityEngine;
 public class ScreenOpacityManager : MonoBehaviour
 {
     [Header("Initial Setting")]
-    [SerializeField] private Transform headPosition;
-    [SerializeField] private OVRPassthroughLayer passthroughLayer;
+    [SerializeField] private Transform HeadPosition;
+    [SerializeField] private OVRPassthroughLayer PassthroughLayer;
+
+    public bool VRMode;
 
     private void Start()
     {
-        passthroughLayer.textureOpacity = 0f; //초기 Opacity는 0 (VR 모드)
+        PassthroughLayer.textureOpacity = 0f; 
+        //PassthroughLayer.textureOpacity = 1f; //초기 Opacity는 1 (MR 모드)
+        VRMode = true;
+        //VRMode = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float headRotation = headPosition.localEulerAngles.x;
-        passthroughLayer.textureOpacity = RotateToOpacity(headRotation);
+        if (VRMode) // It works only VR Mode
+        {
+            float HeadRotation = HeadPosition.localEulerAngles.x;
+            PassthroughLayer.textureOpacity = RotateToOpacity(HeadRotation);
+        }
+        else // MR Mode
+        {
+            
+        }
     }
 
-    /* Developed By 임채윤
+    /* Developed By 임채윤 2024.11.24
+     * 설명 : VR 모드와 MR 모드를 변경한다. */
+    public void EnableVRMode()
+    {
+        StartCoroutine(ChangeOpacity(1f, 0f, 1f));
+        VRMode = true;
+    }
+    public void EnableMRMode()
+    {
+        StartCoroutine(ChangeOpacity(0f, 1f, 1f));
+        VRMode = false;
+    }
+    IEnumerator ChangeOpacity(float Start, float End, float Duration)
+    {
+        float TotalTime = 0; // 경과 시간
+        while(TotalTime < Duration)
+        {
+            PassthroughLayer.textureOpacity = Mathf.Lerp(Start, End, TotalTime / Duration);
+            TotalTime += Time.deltaTime;
+            yield return null; // 다음 프레임까지 대기
+        }
+        PassthroughLayer.textureOpacity = End;
+    }
+
+    /* Developed By 임채윤 2024.11.19
      * 설명 : 고개 각도를 0에서 1 사이의 Passthrough Opacity 값으로 변경한다. */
     float RotateToOpacity(float angle)
     {
